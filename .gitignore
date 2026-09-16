@@ -7,5 +7,6 @@
 *.toc
 *.vrb
 *.log
-*.syntex.gz
 *.fdb_latexmk
+*.fls
+*.synctex.gz

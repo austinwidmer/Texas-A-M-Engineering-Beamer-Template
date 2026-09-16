@@ -1,0 +1,25 @@
+
+\setbeamertemplate{title page}{
+	\begin{tikzpicture}[remember picture,overlay]
+        % PNG positioned from the top-left corner
+        \node[anchor=north] at
+            ([yshift=-0.1cm]current page.north) {
+                \includegraphics[width=4.5cm]{logos/tamu_engineering.png}
+            };
+        % Title box
+        \node[
+            fill=tamu_white,
+            fill opacity=0.92, 
+            text opacity=1, 
+            text width=0.75\paperwidth,
+            align=center,
+            inner sep=14pt
+        ] at ([yshift=-2cm]current page.center) {
+			{\usebeamerfont{title}\usebeamercolor[fg]{title}\bfseries\inserttitle\par}
+			\vspace{0.10cm}
+			{\usebeamerfont{author}\usebeamercolor[fg]{author}\bfseries\insertauthor\par}
+			% {\usebeamerfont{institute}\usebeamercolor[fg]{institute}\insertinstitute\par}
+			{\usebeamerfont{date}\usebeamercolor[fg]{date}\bfseries\insertdate\par}
+		};
+	\end{tikzpicture}
+}

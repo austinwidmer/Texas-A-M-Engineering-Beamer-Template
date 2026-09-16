@@ -1,0 +1,50 @@
+\makeatletter
+
+\setbeamercolor{frametitle}{fg=tamu_white,bg=tamu_black}
+\setbeamercolor{footline}{fg=tamu_white,bg=tamu_black}
+
+\defbeamertemplate*{frametitle}{basic}{%
+    \nointerlineskip%
+    \begin{beamercolorbox}[
+        wd=\paperwidth,
+        ht=1.05cm,
+        dp=0.25cm,
+        leftskip=0.35cm,
+        rightskip=0.35cm
+    ]{frametitle}%
+        \usebeamerfont{frametitle}\insertframetitle%
+        \hfill
+        \raisebox{-0.18cm}{%
+            \includegraphics[height=0.72cm]{logos/tamu_engineering.png}%
+        }%
+    \end{beamercolorbox}%
+}
+
+\setbeamertemplate{frametitle}[basic]
+
+\setbeamertemplate{footline}{%
+    \begin{beamercolorbox}[
+        wd=\paperwidth,
+        ht=0.42cm,
+        dp=0.16cm,
+        leftskip=0.35cm,
+        rightskip=0.35cm
+    ]{footline}%
+        \makebox[0pt][l]{\hspace{\dimexpr0.5\paperwidth-0.35cm\relax}\makebox[0pt][c]{Austin Widmer, \number\year\enspace|\enspace\insertfootertitle : \insertsection}}%
+        \ifnum\beamer@sectionmax>0
+            \foreach \sectionIndex in {1,...,\beamer@sectionmax}{%
+                \ifnum\sectionIndex=\insertsectionnumber
+                    \tikz[baseline=-0.5ex]\fill[tamu_white] (0,0) circle (0.09cm);%
+                \else
+                    \tikz[baseline=-0.5ex]\draw[tamu_white,line width=0.6pt] (0,0) circle (0.09cm);%
+                \fi
+                \hspace{0.08cm}%
+            }%
+        \fi
+        \hfill
+        \usebeamerfont{page number in head/foot}%
+        \insertframenumber/\inserttotalframenumber%
+    \end{beamercolorbox}%
+}
+
+\makeatother

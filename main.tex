@@ -1,0 +1,95 @@
+\documentclass[10pt,compress,aspectratio=169]{beamer}
+%Information to be included in the title page:
+\title{Title of the Presentation}
+\newcommand{\footertitle}[1]{\def\insertfootertitle{#1}}
+\footertitle{Short Title}
+\author{Austin Widmer}
+\institute{Texas A\& University: Department of Aerospace Engineering}
+\date{\today} 
+\usepackage{amsmath}
+\usepackage{caption}
+\usepackage{graphicx,comment}
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage{rotating}
+\usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{enumerate}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{bm}
+\usepackage[T1]{fontenc}
+\usepackage[scaled=0.95]{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{xcolor}
+
+\definecolor{tamu_maroon}{HTML}{500000}
+\definecolor{tamu_white}{HTML}{FFFFFF}
+\definecolor{tamu_black}{HTML}{202020}
+\definecolor{tamu_dark_gray}{HTML}{3E3E3E}
+\definecolor{tamu_gray}{HTML}{707070}
+\definecolor{tamu_light_gray}{HTML}{D1D1D1}
+\definecolor{tamu_tan}{HTML}{D6D3C4}
+\definecolor{tamu_dark_maroon}{HTML}{3C0000}
+\definecolor{tamu_light_maroon}{HTML}{732F2f}
+ 
+
+\setbeamercolor{structure}{fg=tamu_maroon}
+\setbeamercolor{frametitle}{fg=tamu_maroon}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{slide-templates/title-page-earth}
+\input{slide-templates/basic-slide.tex}
+\input{slide-templates/section-title.tex}
+\input{slide-templates/table-of-contents.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  
+\begin{document}
+
+{\usebackgroundtemplate{\includegraphics[width=\paperwidth,height=\paperheight]{assets/Earth-1.jpg}}
+\frame[plain]{\titlepage}}
+\tableofcontentsframe
+\section{Introduction}
+
+\begin{frame}
+\frametitle{Sample frame title}
+This is some text in the first frame. This is some text in the first frame. This is some text in the first frame.
+\end{frame}
+ 
+\begin{frame} 
+\frametitle{Sample frame title}
+\begin{columns}[T,onlytextwidth]
+	\begin{column}{0.36\textwidth}
+		\textbf{Key result}
+
+		This text appears on the left side of the slide. Use this space for the main takeaway, supporting details, or a short list:
+		\begin{itemize}
+			\item First observation
+			\item Second observation
+		\end{itemize}
+	\end{column}  
+	\begin{column}{0.60\textwidth} 
+		\includegraphics[width=1.0\textwidth, trim={190 0 190 0}, clip]{figures/example_fig_pltctx.png}
+	\end{column}
+\end{columns}
+\end{frame} 
+
+\subsection{subsection 1}
+
+\begin{frame} 
+\frametitle{Sample frame title}
+This is some text in the first frame. This is some text in the first frame. This is some text in the first frame.
+\end{frame}
+  
+\section{section 2}
+\sectiontitleframe{assets/Moon-1.png}{Section 2}
+ 
+\begin{frame}
+\frametitle{Sample frame title}
+This is some text in the first frame. This is some text in the first frame. This is some text in the first frame.
+\end{frame}
+ 
+
+\end{document} 
+
+ 

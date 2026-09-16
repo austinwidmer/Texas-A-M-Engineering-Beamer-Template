@@ -1,0 +1,26 @@
+% Section title / divider frame.
+% Usage: \sectiontitleframe{assets/Earth-1.jpg}{Section Title Text}
+\newcommand{\sectiontitleframe}[2]{%
+    \usebackgroundtemplate{\includegraphics[width=\paperwidth,height=\paperheight]{#1}}%
+    \begin{frame}[plain]
+        \begin{tikzpicture}[remember picture,overlay]
+            % Logo box, matching the title page layout
+            \node[anchor=north] at
+                ([yshift=-0.1cm]current page.north) {
+                    \includegraphics[width=4.5cm]{logos/tamu_engineering.png}
+                };
+            % Title box
+            \node[
+                fill=tamu_white,
+                fill opacity=0.92,
+                text opacity=1,
+                text width=0.85\paperwidth,
+                align=center,
+                inner sep=16pt
+            ] at ([yshift=-2.1cm]current page.center) {
+                {\usebeamerfont{title}\color{tamu_maroon}\bfseries\LARGE #2\par}
+            };
+        \end{tikzpicture}
+    \end{frame}
+    \usebackgroundtemplate{}%
+}

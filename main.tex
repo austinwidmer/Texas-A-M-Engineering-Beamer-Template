@@ -55,41 +55,108 @@
 % \frametitle{Sample frame title}
 % This is some text in the first frame. This is some text in the first frame. This is some text in the first frame.
 % \end{frame}
- 
-\begin{frame} 
-\frametitle{Sample frame title}
-\begin{columns}[T,onlytextwidth]
-	\begin{column}{0.36\textwidth}
-		\textbf{Key result}
 
-		This text appears on the left side of the slide. Use this space for the main takeaway, supporting details, or a short list:
-		\begin{itemize}
-			\item First observation
-			\item Second observation
-		\end{itemize}
-	\end{column}  
-	\begin{column}{0.60\textwidth} 
-		\includegraphics[width=1.0\textwidth, trim={190 0 190 0}, clip]{figures/example_fig_pltctx.png}
-	\end{column}
-\end{columns}
-\end{frame} 
- 
-\subsection{subsection 1}
+\section{Slide Format Examples}
 
-\begin{frame} 
-\frametitle{Sample frame title}
-This is some text in the first frame. This is some text in the first frame. This is some text in the first frame.
-\end{frame}
-  
-\section{section 2}
-\sectiontitleframe{assets/Moon-1.png}{Section 2}
- 
+% Slide format: compare two approaches with parallel, color-coded blocks.
 \begin{frame}
-\frametitle{Sample frame title}
-This is some text in the first frame. This is some text in the first frame. This is some text in the first frame.
+\frametitle{Compare Two Approaches}
+Briefly state the question or criterion that makes this comparison useful.
+\begin{columns}[T,onlytextwidth]
+	\column{0.47\textwidth}
+	\begingroup
+	\setbeamercolor{block title}{fg=tamu_white,bg=tamu_dark_gray}
+	\setbeamercolor{block body}{fg=tamu_black,bg=tamu_light_gray}
+	\begin{block}{Approach A}
+		\begin{minipage}[t][2.5cm][t]{\linewidth}
+		\vspace{0pt}
+		\footnotesize
+		\begin{itemize}
+			\setlength{\itemsep}{0.2em}
+			\item Describe the core idea.
+			\item Note an important strength.
+			\item State a relevant limitation.
+		\end{itemize}
+		\end{minipage}
+	\end{block}
+	\endgroup
+	\column{0.47\textwidth}
+	\begingroup
+	\setbeamercolor{block title}{fg=tamu_white,bg=tamu_maroon}
+	\setbeamercolor{block body}{fg=tamu_black,bg=tamu_tan}
+	\begin{block}{Approach B}
+		\begin{minipage}[t][2.5cm][t]{\linewidth}
+		\vspace{0pt}
+		\footnotesize
+		\begin{itemize}
+			\setlength{\itemsep}{0.2em}
+			\item Describe the core idea.
+			\item Note an important strength.
+			\item State a relevant limitation.
+		\end{itemize}
+		\end{minipage}
+	\end{block}
+	\endgroup
+\end{columns}
 \end{frame}
- 
 
-\end{document} 
+% Slide format: pair a concise explanation and equation with a supporting visual.
+\begin{frame}
+\frametitle{Explain a Model or Process}
+State the main idea in one sentence before showing its mathematical or visual detail.
+\begin{columns}[T,onlytextwidth]
+	\column{0.52\textwidth}
+	\small
+	Explain the variables or steps needed to interpret the result. Keep the text focused on what the audience should notice.
+	\begin{align*}
+	\mathrm{Output} &= f(\mathrm{input},\mathrm{parameters}),\\
+	\mathrm{change} &= \mathrm{new\ value} - \mathrm{baseline}.
+	\end{align*}
+	\column{0.45\textwidth}
+	\centering
+	\fbox{\parbox[c][0.40\textheight][c]{0.91\linewidth}{\centering\small Replace with a schematic,\\plot, or other supporting visual}}
+\end{columns}
+\vfill
+{\tiny Source: Add a concise source note when the slide uses external material.}
+\end{frame}
 
- 
+% Slide format: compare a small set of results panels and finish with one takeaway.
+\begin{frame}
+\frametitle{Compare Results Across Cases}
+Summarize the test setup or dataset in one short sentence.
+\begin{columns}[T,onlytextwidth]
+	\column{0.32\textwidth}
+	\centering
+	\scriptsize Case A\\[0.3em]
+	\fbox{\parbox[c][0.20\textheight][c]{0.90\linewidth}{\centering Replace with plot or image}}
+	\column{0.32\textwidth}
+	\centering
+	\scriptsize Case B\\[0.3em]
+	\fbox{\parbox[c][0.20\textheight][c]{0.90\linewidth}{\centering Replace with plot or image}}
+	\column{0.32\textwidth}
+	\centering
+	\scriptsize Error or metric\\[0.3em]
+	\fbox{\parbox[c][0.20\textheight][c]{0.90\linewidth}{\centering Replace with plot or image}}
+\end{columns}
+\vspace{0.4em}
+\small
+State the main comparison, then support it with one or two concise observations.
+\begin{itemize}
+	\footnotesize
+	\item Report the primary metric with units or a clear definition.
+	\item Include a limitation or trade-off when it affects the conclusion.
+\end{itemize}
+\begingroup
+\setbeamercolor{block title}{fg=tamu_white,bg=tamu_dark_gray}
+\setbeamercolor{block body}{fg=tamu_black,bg=tamu_light_gray}
+\begin{block}{Key takeaway}
+\small State the conclusion that the audience should remember.
+\end{block}
+\endgroup
+\end{frame} 
+
+\section{Section Divider Example}
+\sectiontitleframe{assets/Moon-1.jpg}{Section Title}
+
+\end{document}
+

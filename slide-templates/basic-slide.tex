@@ -14,36 +14,89 @@
     ]{frametitle}%
         \usebeamerfont{frametitle}\insertframetitle%
         \hfill
-        \raisebox{-0.18cm}{%
-            \includegraphics[height=0.72cm]{logos/tamu_engineering.png}%
+        \raisebox{-0.18cm}[0pt][0pt]{%
+            \begin{tabular}[b]{@{}r@{}}
+                {\tiny\color{tamu_white}\insertauthor\,|\,\insertdate}\\[2pt]
+                \includegraphics[height=0.72cm]{logos/tamu_engineering.png}
+            \end{tabular}%
         }%
     \end{beamercolorbox}%
 }
 
 \setbeamertemplate{frametitle}[basic]
 
+% Per-frame section data is written to the .aux and read back on the next compile.
+\newcount\fp@C
+\newcount\fp@idx
+\def\fp@rec#1#2#3{\global\@namedef{fp@sec@#1}{#2}\global\@namedef{fp@name@#2}{#3}}
+\def\fp@sec#1{\ifcsname fp@sec@#1\endcsname\csname fp@sec@#1\endcsname\else0\fi}
+\def\fp@record{\protected@write\@auxout{}{\string\fp@rec{\the\c@framenumber}{\the\c@section}{\insertsection}}}
+\def\fp@recordexcluded{\protected@write\@auxout{}{\string\fp@rec{\the\c@framenumber}{0}{\insertsection}}}
+\def\fp@gap{8.5}
+
+\def\fp@progress{%
+    \edef\fp@S{\number\beamer@sectionmax}%
+    \edef\fp@T{\number\inserttotalframenumber}%
+    \ifnum\fp@S>0 \ifnum\fp@T>0
+        \global\fp@C=0
+        \foreach \fps in {1,...,\fp@S}{\global\@namedef{fp@n@\fps}{0}}%
+        \foreach \fpf in {1,...,\fp@T}{%
+            \edef\fp@s{\fp@sec{\fpf}}%
+            \ifnum\fp@s>0
+                \ifnum\fp@s>\fp@S\else
+                    \global\advance\fp@C by 1
+                    \ifnum\csname fp@n@\fp@s\endcsname=0
+                        \global\expandafter\edef\csname fp@first@\fp@s\endcsname{\the\fp@C}%
+                    \fi
+                    \global\expandafter\edef\csname fp@n@\fp@s\endcsname{\the\numexpr\csname fp@n@\fp@s\endcsname+1\relax}%
+                \fi
+            \fi
+        }%
+        \ifnum\fp@C>0
+            \pgfmathsetmacro\fp@p{(\paperwidth-0.7cm-\fp@S*\fp@gap pt-5pt)/\number\fp@C}%
+            \pgfmathsetmacro\fp@r{min(0.09cm,0.4*\fp@p)}%
+            \global\fp@idx=0
+            \makebox[\dimexpr\paperwidth-0.7cm\relax][c]{%
+            \begin{tikzpicture}[x=1pt,y=1pt,baseline=0pt]
+                \foreach \fpf in {1,...,\fp@T}{%
+                    \edef\fp@s{\fp@sec{\fpf}}%
+                    \ifnum\fp@s>0
+                        \ifnum\fp@s>\fp@S\else
+                            \global\advance\fp@idx by 1
+                            \pgfmathsetmacro\fp@x{(\number\fp@idx-0.5)*\fp@p+(\fp@s-1)*\fp@gap}%
+                            \ifnum\fpf>\insertframenumber
+                                \draw[tamu_white,line width=0.6pt] (\fp@x,0) circle (\fp@r pt);
+                            \else
+                                \fill[tamu_white] (\fp@x,0) circle (\fp@r pt);
+                            \fi
+                        \fi
+                    \fi
+                }
+                \foreach \fps in {1,...,\fp@S}{%
+                    \ifnum\csname fp@n@\fps\endcsname>0
+                        \edef\fp@a{\csname fp@first@\fps\endcsname}%
+                        \edef\fp@b{\csname fp@n@\fps\endcsname}%
+                        \pgfmathsetmacro\fp@lx{((\fp@a-1)+\fp@b/2)*\fp@p+(\fps-1)*\fp@gap}%
+                        \pgfmathsetmacro\fp@lw{\fp@b*\fp@p+\fp@gap-2}%
+                        \node[anchor=south,text width=\fp@lw pt,align=center,inner sep=0pt,font=\fontsize{4}{4.8}\selectfont,text=tamu_white]
+                            at (\fp@lx,7) {\csname fp@name@\fps\endcsname};
+                    \fi
+                }
+            \end{tikzpicture}}%
+        \fi
+    \fi\fi
+}
+
 \setbeamertemplate{footline}{%
+    \fp@record
     \begin{beamercolorbox}[
         wd=\paperwidth,
-        ht=0.42cm,
+        ht=0.65cm,
         dp=0.16cm,
         leftskip=0.35cm,
         rightskip=0.35cm
     ]{footline}%
-        \makebox[0pt][l]{\hspace{\dimexpr0.5\paperwidth-0.35cm\relax}\makebox[0pt][c]{Austin Widmer, \number\year\enspace|\enspace\insertfootertitle : \insertsection}}%
-        \ifnum\beamer@sectionmax>0
-            \foreach \sectionIndex in {1,...,\beamer@sectionmax}{%
-                \ifnum\sectionIndex=\insertsectionnumber
-                    \tikz[baseline=-0.5ex]\fill[tamu_white] (0,0) circle (0.09cm);%
-                \else
-                    \tikz[baseline=-0.5ex]\draw[tamu_white,line width=0.6pt] (0,0) circle (0.09cm);%
-                \fi
-                \hspace{0.08cm}%
-            }%
-        \fi
-        \hfill
-        \usebeamerfont{page number in head/foot}%
-        \insertframenumber/\inserttotalframenumber%
+        \fp@progress
     \end{beamercolorbox}%
 }
 

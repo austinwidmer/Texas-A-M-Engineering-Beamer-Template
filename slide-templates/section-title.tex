@@ -1,8 +1,10 @@
 % Section title / divider frame.
 % Usage: \sectiontitleframe{assets/Earth-1.jpg}{Section Title Text}
+\makeatletter
 \newcommand{\sectiontitleframe}[2]{%
     \usebackgroundtemplate{\includegraphics[width=\paperwidth,height=\paperheight]{#1}}%
     \begin{frame}[plain]
+        \fp@recordexcluded
         \begin{tikzpicture}[remember picture,overlay]
             % Logo box, matching the title page layout
             \node[anchor=north] at
@@ -24,3 +26,4 @@
     \end{frame}
     \usebackgroundtemplate{}%
 }
+\makeatother
